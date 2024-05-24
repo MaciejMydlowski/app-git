@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def post_list(request):
-    return render(request, 'app/post_list.html', {})
+def wpisy_przeglądów(request):
+    return render(request, 'app/wpisy_przeglądów.html', {})
