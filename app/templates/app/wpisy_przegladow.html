@@ -1,21 +1,14 @@
-<html>
-    <head>
-        <title>Pasieka Maciej</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Pasieka nagłówek</a></h1>
-        </div>
+{% extends 'app/base.html' %}
 
-        {% for post in przeglad_views %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
+{% block content %}
+    {% for post in przeglad_views %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
             </div>
-        {% endfor %}
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
 
-
-
-    </body>
-</html>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
