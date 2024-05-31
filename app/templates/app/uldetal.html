@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% block content %}
+    <h1> Szczegóły ula  "{{ ul.nazwa }}"</h1>
+    {% if ul %}
+        <ul>
+            {% for text in ul.typ_ula.all %}
+                <li>Typ ula - {{ text }}</li>
+            {% endfor %}
+            <li>Data instalacji - {{ ul.install_date }}</li>
+            {% for text in ul.matka.all %}
+                <li>Matka - {{ text }}</li>
+            {% endfor %}
+            <li>Data podania matki - {{ ul.matka_date }}</li>
+
+        </ul>
+    {% else %}
+        <p>Brak uli</p>
+    {% endif %}
+{% endblock %}
+
+
+

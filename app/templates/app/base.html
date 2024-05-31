@@ -1,25 +1,68 @@
 {% load static %}
-<html>
-    <head>
-        <title>Pasieka Maciej</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/app.css' %}">
-    </head>
-    <body>
-    <div class="page-header">
-        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        <h1><a href="/">Pasieka Maciej</a></h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="shortcut icon" href="#" />
+    <title>Pasieka Maciej</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="icon" href="{% static 'css/ikona.png' %}" type="image/x-icon">
+  </head>
+  <body>
+    <img src="{% static 'css/naglowek.png' %}" style="float: right; ">
+    <img src="{% static 'css/ul.png' %}" style="float: left; ">
 
+    <div class="page-header">
+
+      <h0>Pasieka Maciej</h0>
+
+      
+        {% if request.user.is_authenticated %}
+        <h1>zalogowany : {{ user.get_username }}</h1>
+        {% else %}
+        <h1>niezalogowany : {{ user.get_username }}</h1>
+        {% endif %}
+
+      <h2>
+
+        {% if user.is_authenticated %}
+        <a class="btn btn-danger" href="JavaScript:{document.getElementById('logout').submit()}" >Wyloguj się</a>
+        {% else %}
+        <a class="btn btn-warning" href="{% url 'signup_page' %}" >Zarejestruj się</a>
+        <a class="btn btn-warning" href="{% url 'login_page' %}" >Zaloguj się</a>
+
+        {% endif %}
+      </h2>
+      <h3>
+        <a href="{% url 'home' %}"><button type="button" class="btn btn-warning" >HOME</button></a>
+
+        <a href="{% url 'ule2' %}"><button type="button" class="btn btn-warning">Ule test</button></a>
+        <a href="{% url 'ul_nowy' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
     </div>
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
-            {% block content %}
-            {% endblock %}
-            </div>
-        </div>
-    </div>
-</body>
+      </h3>
+
+
+       
+      {% if user.is_authenticated %}
+      <form id="logout" method="POST" action="{% url 'logout_page' %}">
+        {% csrf_token %}
+        <input type="hidden">
+      </form>
+      {% endif %}
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    {% block content %}
+    {% endblock %}
+    </body>
 </html>
