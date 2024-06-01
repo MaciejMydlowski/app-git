@@ -1,22 +1,31 @@
 {% extends "app/base.html" %}
+
 {% block content %}
-    <h1> Szczegóły ula  "{{ ul.nazwa }}"</h1>
-    {% if ul %}
-        <ul>
-            {% for text in ul.typ_ula.all %}
-                <li>Typ ula - {{ text }}</li>
-            {% endfor %}
-            <li>Data instalacji - {{ ul.install_date }}</li>
-            {% for text in ul.matka.all %}
-                <li>Matka - {{ text }}</li>
-            {% endfor %}
-            <li>Data podania matki - {{ ul.matka_date }}</li>
+<div class="container">
+    
+  
+    <h1> Szczegóły dla ula  "{{ uld.nazwa }}"</h1>
+        {% if uld %}
+            <ul>
+                <li>Data instalacji - {{ uld.install_date }}</li>
+                    {% for matka in uld.matka.all %}
+                <li> Matka - {{matka.matka}}</li>             
+                    {% endfor %}
+                <li>Data podania matki - {{ uld.matka_date }}</li>
+                    {% for posiadane_ule in uld.typ_ula.all %}
+                <li> Typ ula - {{posiadane_ule.typ_ula}}</li>             
+                    {% endfor %}
+                <li>ilość ramek - {{ uld.ilosc_ramek }}</li>
+                    {% if uld.aktywny  %}
+                <li>aktywny - Tak</li>
+                    {% else %}    
+                <li>aktywny - Nie</li>  
+                    {% endif %}  
+            </ul>
 
-        </ul>
-    {% else %}
-        <p>Brak uli</p>
-    {% endif %}
+        {% else %}
+            <p>Brak uli</p>
+        {% endif %}
+ </div>   
 {% endblock %}
-
-
 

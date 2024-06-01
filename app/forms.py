@@ -1,15 +1,59 @@
 from django import forms
+from django.forms import ModelForm, Textarea, Select, NumberInput, CheckboxSelectMultiple, NullBooleanSelect,CheckboxInput, MultipleChoiceField, DecimalField
+from .models import TypUla, MatkiPszczele, PosiadaneUle, Lokalizacja
 
-from .models import Przeglad, DodawanieUla, TypUla
 
-class PostForm(forms.ModelForm):
-
+#class PosiadaneUleForm(forms.ModelForm):
+class PosiadaneUleForm(ModelForm):
     class Meta:
-        model = Przeglad
-        fields = ('title', 'text',)
+        model = PosiadaneUle
+        fields = (
+            'miejsce',
+            'nazwa',
+            'typ_ula',
+            'ilosc_ramek',
+            'install_date',
+            'matka',            
+            'matka_date', 
+            'aktywny'
+            )
+        widgets = {
+            'miejsce': CheckboxSelectMultiple(),
+            'matka': CheckboxSelectMultiple(),
+            'typ_ula': CheckboxSelectMultiple(),
+            'install_date': NumberInput(attrs={'type':'date'}),
+            'matka_date': NumberInput(attrs={'type':'date'}),
+            'aktywny': CheckboxInput(),
+            #'ilosc_ramek': DecimalField(max_digits=15, decimal_places=None),
+        }
+ #required = False
+ 
+# class PosiadaneUleForm(forms.Form):
 
-class UlForm(forms.ModelForm):
-    class Meta:
-        model = DodawanieUla
-        fields = ('nazwa', 'matka', 'typ_ula','install_date')
-        
+
+
+
+#     #miejsce = forms.ModelMultipleChoiceField(
+#         #queryset=Lokalizacja.objects.all(), 
+#         #widget=forms.CheckboxSelectMultiple
+#         #)
+#     nazwa = forms.CharField()
+#        # widget=forms.Textarea(
+#        #     attrs={
+#        #     "placeholder": "podaj nazwe",
+#        #     "rows": 1,
+#         #    "colws": 1
+#         #    }
+#         #    ))  
+#     #install_date = forms.DecimalField()      
+#     #typ_ula = forms.ModelMultipleChoiceField(
+#         #queryset=TypUla.objects.all(), 
+#         #widget=forms.CheckboxSelectMultiple
+#         #)
+#     #matka = forms.ModelMultipleChoiceField(
+#         #queryset=MatkiPszczele.objects.all(), 
+#         #widget=forms.CheckboxSelectMultiple
+#        # )
+#     #matka_date = forms.DateField() 
+#     ilosc_ramek = forms.DecimalField()
+#     aktywny = forms.BooleanField(initial = False)

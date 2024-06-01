@@ -1,16 +1,20 @@
 {% extends "app/base.html" %}
 
 {% block content %}
+<div class="container">
    
-    <h1> Posiadane Ule test </h1>
+  
+   
+    <h1> Posiadane Ule </h1>
     {% if ul %}
         <ul>
-            {% for posiadane_ule in ul %}
-                <li><a href="{% url 'app:detalUl' posiadane_ule.id %}">{{ posiadane_ule.nazwa }}</a></li>
+            {% for uls in ul %}
+                <li><a href="{% url 'detalUl' uls.id %}">{{ uls.nazwa }}</a></li>
             {% endfor %}
         </ul>
 
     {% else %}
         <p>Brak uli</p>
     {% endif %}
+</div>
 {% endblock %}

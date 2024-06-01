@@ -1,11 +1,11 @@
 {% extends "app/base.html" %}
 
 {% block content %}
+<div class="container">
     <h2>Nowy ul</h2>
         <form method="POST" class="post-form">{% csrf_token %}
             {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+            <input class="btn btn-primary" type="submit" value="Zapisz">
         </form>
-
-
+</div>
 {% endblock %}

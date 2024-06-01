@@ -78,6 +78,14 @@ h0, h1, h2, h3, h4 {
 .content {
     margin-left: 40px;
     background-color: #FFDEA4;
+
+.content h2, .content h2 a, .content h2 a:visited, .content h2 a:active {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    font-size: 40px;
+
 }
 
 
