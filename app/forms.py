@@ -24,7 +24,7 @@ class PosiadaneUleForm(ModelForm):
             'install_date': NumberInput(attrs={'type':'date'}),
             'matka_date': NumberInput(attrs={'type':'date'}),
             'aktywny': CheckboxInput(),
-            'ilosc_ramek': DecimalField(),
+            #'ilosc_ramek': DecimalField(),
         }
  #required = False
  
