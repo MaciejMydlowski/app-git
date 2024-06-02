@@ -27,4 +27,5 @@ urlpatterns = [
     path('logout', views.logout_page, name='logout_page'),#14
     path('ulnowy/', views.ul_nowy, name='ul_nowy'),
     path('<int:pk>/uldetal/', views.uldetal, name='detalUl'),
+    path('<int:pk>/edit/', views.post_edit, name='post_edit'),
 ]

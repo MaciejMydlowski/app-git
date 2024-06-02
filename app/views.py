@@ -90,8 +90,8 @@ def ul_nowy(request):
             print(form.cleaned_data)   
             #PosiadaneUle.objects.create(**form.cleaned_data)
             post = form.save(commit=False)
-            post.install_date = timezone.now()
-            post.matka_date = timezone.now()
+            #post.install_date = timezone.now()
+            #post.matka_date = timezone.now()
             post.save()
             form.save_m2m()
             print(post.pk)
@@ -105,7 +105,22 @@ def ul_nowy(request):
  
 
 
+def post_edit(request, pk):
+    uld = PosiadaneUle.objects.get(pk=pk)
+    context = {
+        'uld': uld,
+    }
 
+    if request.method == "POST":
+        form = PosiadaneUleForm(request.POST, instance=uld)
+        if form.is_valid():
+            uld = form.save(commit=False)
+            
+            uld.save()
+            return redirect('detalUl', pk=uld.pk)
+    else:
+        form = PosiadaneUleForm(instance=uld)
+    return render(request, 'app/ul_edit.html', {'form': form})
  
     
 

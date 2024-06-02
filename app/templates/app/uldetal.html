@@ -2,10 +2,14 @@
 
 {% block content %}
 <div class="container">
+   
     
-  
-    <h1> Szczegóły dla ula  "{{ uld.nazwa }}"</h1>
+    <h1> 
+        Szczegóły dla ula  "{{ uld.nazwa }}"
+        <a class="btn btn-default" href="{% url 'post_edit' uld.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    </h1>
         {% if uld %}
+        
             <ul>
                 <li>Data instalacji - {{ uld.install_date }}</li>
                     {% for matka in uld.matka.all %}
@@ -26,6 +30,9 @@
         {% else %}
             <p>Brak uli</p>
         {% endif %}
- </div>   
+
+ </div>  
+
+
 {% endblock %}
 
