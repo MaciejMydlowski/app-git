@@ -8,6 +8,10 @@ h0, h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
     color: #803B1B;
 }
+.img{
+    width: 35%;
+    
+}
 .page-header {
     background-color: #FCD741;
     height: 200px;
